@@ -69,6 +69,18 @@
                 <scope>import</scope>
             </dependency>
 
+            <dependency>
+                <groupId>com.meetingfilm</groupId>
+                <artifactId>backend-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.meetingfilm</groupId>
+                <artifactId>backend-utils</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
             <!-- mybatis-plus依赖 -->
             <dependency>
                 <groupId>com.baomidou</groupId>
