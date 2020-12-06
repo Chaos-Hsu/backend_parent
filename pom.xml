@@ -19,6 +19,7 @@
             <modules>
                 <module>backend-common</module>
                 <module>backend-utils</module>
+                <module>backend_user</module>
             </modules>
         </profile>
     </profiles>
