@@ -20,6 +20,11 @@
 
     <dependencies>
 
+        <dependency>
+            <groupId>com.meetingfilm</groupId>
+            <artifactId>backend-utils</artifactId>
+        </dependency>
+
         <!-- mybatis-plus依赖 -->
         <dependency>
             <groupId>com.baomidou</groupId>
