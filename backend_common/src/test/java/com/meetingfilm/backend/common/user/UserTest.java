@@ -93,14 +93,14 @@ public class UserTest extends BackendCommonApplicationTests {
         MoocBackendUserT userT = backendUser.selectOneByUserName("admin4");
         System.out.println(userT);
 
-        com.meetingfilm.backend.common.dao.entity.UserTest.builder().userName("").userPhone("");
+        //com.meetingfilm.backend.common.dao.entity.UserTest.builder().userName("").userPhone("");
 
 
 
-        try {
-            @Cleanup FileInputStream fileInputStream = new FileInputStream(new File(""));
-        } catch (FileNotFoundException e) {
-           log.error(e.getMessage());
-        }
+        //try {
+            //@Cleanup FileInputStream fileInputStream = new FileInputStream(new File(""));
+        //} catch (FileNotFoundException e) {
+           //log.error(e.getMessage());
+        //}
     }
 }

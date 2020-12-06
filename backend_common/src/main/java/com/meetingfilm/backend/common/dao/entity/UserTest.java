@@ -12,7 +12,7 @@ import lombok.Data;
  * @since 2020-12-01
  */
 @Data
-@Builder
+//@Builder
 public class UserTest {
 
 

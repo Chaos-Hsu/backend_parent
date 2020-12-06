@@ -14,10 +14,15 @@
     <name>backend-parent</name>
     <description>猫眼父项目</description>
 
-    <modules>
-        <module>backend-common</module>
-        <module>backend-utils</module>
-    </modules>
+    <profiles>
+        <profile>
+            <modules>
+                <module>backend-common</module>
+                <module>backend-utils</module>
+            </modules>
+        </profile>
+    </profiles>
+
 
     <packaging>pom</packaging>
 
