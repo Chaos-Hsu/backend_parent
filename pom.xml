@@ -20,6 +20,7 @@
                 <module>backend-common</module>
                 <module>backend-utils</module>
                 <module>backend_user</module>
+                <module>backend_eureka_server</module>
             </modules>
         </profile>
     </profiles>
