@@ -1,4 +1,4 @@
-package controller;
+package com.meetingfilm.user.controller;
 
 
 import org.springframework.web.bind.annotation.RequestMapping;

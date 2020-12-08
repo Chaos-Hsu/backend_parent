@@ -1,7 +1,7 @@
-package service;
+package com.meetingfilm.user.service;
 
-import com.meetingfilm.user.dao.entity.MoocBackendUserT;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.meetingfilm.user.dao.entity.MoocBackendUserT;
 
 /**
  * <p>

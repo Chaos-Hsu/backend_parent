@@ -1,8 +1,8 @@
-package service.impl;
+package com.meetingfilm.user.service.impl;
 
 import com.meetingfilm.user.dao.entity.MoocBackendUserT;
 import com.meetingfilm.user.dao.mapper.MoocBackendUserTMapper;
-import service.IMoocBackendUserTService;
+import com.meetingfilm.user.service.IMoocBackendUserTService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 

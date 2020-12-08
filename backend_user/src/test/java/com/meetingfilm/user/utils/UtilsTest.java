@@ -1,7 +1,10 @@
 package com.meetingfilm.user.utils;
 
-import com.meetingfilm.utils.common.vo.BaseResponseVo;
+import com.meetingfilm.user.dao.entity.MoocBackendUserT;
 import org.junit.Test;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 描述 :
@@ -12,9 +15,30 @@ public class UtilsTest {
 
     @Test
     public void name() {
+        List<MoocBackendUserT> list = new ArrayList<>();
+        //测试数据
+        for (int i = 0; i < 5; i++) {
+            MoocBackendUserT user = new MoocBackendUserT();
+            user.setUserName(i + 1 + "");
+            user.setUserPwd("a" + i);
+            user.setUserPhone("185" + i);
+            list.add(user);
+        }
+        //
+        //List<MoocBackendUserT> aList = new ArrayList<>();
+        //
+        //list.stream().filter(user -> user.getUserName().equals("1"))
+        //        .forEach(user -> aList.add(user));
+        //
+        //
+        //aList.forEach(System.out::println);
 
-        BaseResponseVo baseResponseVo = new BaseResponseVo();
-        System.out.println(baseResponseVo.run(""));
+        //Stream.iterate(1, integer -> integer + 1)
+        //        .limit(10).forEach(System.out::print);
+        //
+        //Stream.generate(Math::random)
+        //        .limit(10).forEach(System.out::print);
+
 
     }
 }
