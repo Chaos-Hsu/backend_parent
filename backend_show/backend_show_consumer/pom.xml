@@ -4,26 +4,15 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.meetingfilm</groupId>
-        <artifactId>backend-parent</artifactId>
+        <artifactId>backend-show</artifactId>
         <version>0.0.1-SNAPSHOT</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <groupId>com.meetingfilm</groupId>
-    <artifactId>backend-show</artifactId>
+    <artifactId>backend-show-consumer</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>pom</packaging>
-    <name>backend-show</name>
-    <description>演示工程</description>
-
-    <profiles>
-        <profile>
-            <modules>
-                <module>backend_show_provider</module>
-                <module>backend_show_consumer</module>
-            </modules>
-        </profile>
-    </profiles>
-
+    <name>backend-show-consumer</name>
+    <description>服务消费者</description>
 
     <properties>
         <java.version>1.8</java.version>
