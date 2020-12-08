@@ -1,4 +1,4 @@
-﻿package com.meetingfilm.utils.util;
+package com.meetingfilm.utils.util;
 
 import com.meetingfilm.utils.properties.JwtProperties;
 import io.jsonwebtoken.*;
