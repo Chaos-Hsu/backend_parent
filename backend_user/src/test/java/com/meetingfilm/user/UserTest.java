@@ -3,6 +3,7 @@ package com.meetingfilm.user;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.meetingfilm.user.dao.entity.MoocBackendUserT;
 import com.meetingfilm.user.dao.mapper.MoocBackendUserTMapper;
+import com.meetingfilm.utils.util.MD5Util;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 
@@ -22,7 +23,12 @@ public class UserTest extends BackendUserApplicationTests {
 
     @Test
     public void add() {
+        MoocBackendUserT moocBackendUserT = new MoocBackendUserT();
+        moocBackendUserT.setUserName("admin5");
+        moocBackendUserT.setUserPwd(MD5Util.encrypt("123456"));
+        moocBackendUserT.setUserPhone("18900000000000");
 
+        backendUser.insert(moocBackendUserT);
     }
 
     @Test
