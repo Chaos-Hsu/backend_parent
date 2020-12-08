@@ -1,4 +1,4 @@
-package com.meetingfilm.utils.util;
+package com.meetingfilm.utils.properties;
 
 /**
  * jwt相关配置
