@@ -14,4 +14,19 @@
         <result column="cinema_address" property="cinemaAddress" />
         <result column="minimum_price" property="minimumPrice" />
     </resultMap>
+
+    <select id="findPage" resultType="com.meetingfilm.cinema.controller.vo.CinemaListRespVO">
+        SELECT
+            c.brand_id AS brandId,
+            c.area_id AS areaId,
+            c.hall_ids AS hallTypeIds,
+            c.cinema_name AS cinemaName,
+            c.cinema_address AS cinemaAddress,
+            c.cinema_phone AS cinemaTele,
+            c.img_address AS cinemaImgAddress,
+            c.minimum_price AS cinemaPrice
+        FROM
+            mooc_cinema_t c
+    </select>
+
 </mapper>
