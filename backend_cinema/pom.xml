@@ -9,10 +9,10 @@
         <relativePath>../pom.xml</relativePath>
     </parent>
     <groupId>com.meetingfilm</groupId>
-    <artifactId>backend-film</artifactId>
+    <artifactId>backend-cinema</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>backend-film</name>
-    <description>影片模块</description>
+    <name>backend-cinema</name>
+    <description>影院模块</description>
 
     <properties>
         <java.version>1.8</java.version>
