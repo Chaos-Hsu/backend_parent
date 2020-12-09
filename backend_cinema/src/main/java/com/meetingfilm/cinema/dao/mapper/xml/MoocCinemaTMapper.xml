@@ -15,7 +15,7 @@
         <result column="minimum_price" property="minimumPrice" />
     </resultMap>
 
-    <select id="findPage" resultType="com.meetingfilm.cinema.com.meetingfilm.hall.controller.vo.CinemaListRespVO">
+    <select id="findPage" resultType="com.meetingfilm.cinema.controller.vo.CinemaListRespVO">
         SELECT
             c.brand_id AS brandId,
             c.area_id AS areaId,

@@ -17,7 +17,7 @@
 
     <select id="findPageByCinemaId" resultType="com.meetingfilm.hall.controller.vo.HallsListRespVO">
         SELECT (SELECT c.cinema_name FROM mooc_cinema_t c WHERE c.UUID = fie.cinema_id)   AS cinemaName,
-               (SELECT film_name FROM mooc_film_t f WHERE f.UUID = fie.film_id)           AS filmName,
+               (SELECT f.film_name FROM mooc_film_t f WHERE f.UUID = fie.film_id)           AS filmName,
                (SELECT hd.show_name FROM mooc_hall_dict_t hd WHERE hd.UUID = fie.hall_id) AS hallTypeName,
                fie.hall_name                                                              AS hallName,
                fie.begin_time                                                             AS beginTime,

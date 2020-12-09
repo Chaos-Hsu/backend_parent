@@ -50,7 +50,7 @@ public class FilmController {
      *
      * @return
      */
-    @PostMapping("/{filmId}")
+    @RequestMapping("/{filmId}")
     public BaseResponseVo filmsInfo(@PathVariable("filmId") String filmId) throws CommonServiceException {
         FilmsInfoRespVO filmInfo = filmService.getFilmInfo(filmId);
         if (filmInfo == null) {

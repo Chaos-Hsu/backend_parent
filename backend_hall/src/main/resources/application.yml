@@ -12,10 +12,10 @@ spring:
     password: csxqc1314
     filters: log4j,wall,mergeStat
   application:
-    name: hall-com.meetingfilm.hall.service
+    name: hall-service
 
 server:
-  port: 8501
+  port: 8601
 
 eureka:
   client:

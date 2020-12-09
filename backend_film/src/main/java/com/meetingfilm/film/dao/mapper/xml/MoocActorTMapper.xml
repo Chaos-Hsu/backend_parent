@@ -10,7 +10,7 @@
     </resultMap>
 
 
-    <select id="findActors" resultType="com.meetingfilm.film.com.meetingfilm.cinema.com.meetingfilm.hall.controller.vo.ActorsListRespVO">
+    <select id="findActors" resultType="com.meetingfilm.film.controller.vo.ActorsListRespVO">
         SELECT `UUID` AS actorId,`actor_name` AS actorName FROM mooc_actor_t
     </select>
 

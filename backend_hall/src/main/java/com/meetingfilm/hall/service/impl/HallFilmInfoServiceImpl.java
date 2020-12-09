@@ -55,7 +55,6 @@ public class HallFilmInfoServiceImpl extends ServiceImpl<MoocHallFilmInfoTMapper
         if (ToolUtils.strIsNotNul(cinemaId)) {
             queryWrapper.eq("cinema_id", cinemaId);
         }
-        queryWrapper.getCustomSqlSegment();
         return fieldMapper.findPageByCinemaId(page, queryWrapper);
     }
 
