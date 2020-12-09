@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
@@ -59,6 +60,7 @@ public class HallFilmInfoServiceImpl extends ServiceImpl<MoocHallFilmInfoTMapper
     }
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public void saveHall(HallsAddReqVO reqVO) throws CommonServiceException {
         try {
             //影厅列表数据
