@@ -20,21 +20,46 @@
     </resultMap>
 
     <select id="findFilms" resultType="com.meetingfilm.film.controller.vo.FilmsListRespVO">
-        SELECT
-            f.film_status AS film_status,
-            f.film_name AS filmName,
-            f.film_score AS filmScore,
-            f.film_preSaleNum AS preSaleNum,
-            f.film_box_office AS boxOffice,
-            f.film_time AS filmTime,
-            f.img_address AS mainImg,
-            fi.film_length AS filmLength,
-            fi.film_en_name AS filmEnName
-        FROM
-            mooc_film_t f,
-            mooc_film_info_t fi
-        WHERE
-            f.UUID = fi.film_id
+        SELECT f.film_status     AS film_status,
+               f.film_name       AS filmName,
+               f.film_score      AS filmScore,
+               f.film_preSaleNum AS preSaleNum,
+               f.film_box_office AS boxOffice,
+               f.film_time       AS filmTime,
+               f.img_address     AS mainImg,
+               fi.film_length    AS filmLength,
+               fi.film_en_name   AS filmEnName
+        FROM mooc_film_t f,
+             mooc_film_info_t fi
+        WHERE f.UUID = fi.film_id
     </select>
+
+
+    <select id="findById" resultType="com.meetingfilm.film.controller.vo.FilmsInfoRespVO">
+        SELECT f.UUID                      AS filmId,
+               f.film_name                 AS filmName,
+               fi.film_length              AS filmLength,
+               f.img_address               AS imgAddress,
+               fi.film_imgs                AS subAddress,
+
+               (SELECT GROUP_CONCAT(fa.role_name SEPARATOR ',')
+                FROM mooc_film_actor_t fa
+                WHERE fa.film_id = f.UUID) AS actors,
+
+               (
+                   SELECT GROUP_CONCAT(show_name SEPARATOR ',')
+                   FROM mooc_cat_dict_t cd
+                   WHERE FIND_IN_SET(
+                                 cd.UUID, (
+                               SELECT REPLACE
+                                          (TRIM(BOTH '#' FROM fm.film_cats), "#", ",")
+                               FROM mooc_film_t fm
+                               WHERE fm.UUID = f.UUID
+                           )))             AS filmCats
+        FROM mooc_film_t f,
+             mooc_film_info_t fi
+        WHERE f.UUID = fi.film_id
+    </select>
+
 
 </mapper>
