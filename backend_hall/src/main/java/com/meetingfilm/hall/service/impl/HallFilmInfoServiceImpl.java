@@ -96,8 +96,7 @@ public class HallFilmInfoServiceImpl extends ServiceImpl<MoocHallFilmInfoTMapper
         String url = "http://" + host + ":" + port + uri;
         //调用生产者
         JSONObject result = restTemplate.getForObject(url, JSONObject.class);
-        JSONObject code = result.getJSONObject("code");
-        if (code.getIntValue("code") != 200) {
+        if (result.getIntValue("code") != 200) {
             throw new CommonServiceException(500, "数据异常");
         }
         JSONObject data = result.getJSONObject("data");
