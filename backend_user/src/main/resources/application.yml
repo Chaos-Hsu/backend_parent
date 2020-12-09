@@ -11,7 +11,13 @@ spring:
     username: root
     password: csxqc1314
     filters: log4j,wall,mergeStat
+  application:
+    name: user-serivce
 
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
 
 logging:
   config: classpath:logback.xml
