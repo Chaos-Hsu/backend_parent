@@ -8,4 +8,10 @@
         <result column="actor_name" property="actorName" />
         <result column="actor_img" property="actorImg" />
     </resultMap>
+
+
+    <select id="findActors" resultType="com.meetingfilm.film.controller.vo.ActorsListRespVO">
+        SELECT `UUID` AS actorId,`actor_name` AS actorName FROM mooc_actor_t
+    </select>
+
 </mapper>

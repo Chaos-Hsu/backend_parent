@@ -3,6 +3,7 @@ package com.meetingfilm.film.service;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.meetingfilm.film.controller.vo.ActorsListRespVO;
+import com.meetingfilm.film.controller.vo.FilmsAddReqVO;
 import com.meetingfilm.film.controller.vo.FilmsInfoRespVO;
 import com.meetingfilm.film.controller.vo.FilmsListRespVO;
 import com.meetingfilm.film.dao.entity.MoocFilmT;
@@ -49,4 +50,11 @@ public interface IFilmService extends IService<MoocFilmT> {
      */
     FilmsInfoRespVO getFilmInfo(String filmId) throws CommonServiceException;
 
+    /**
+     * 保存影片
+     *
+     * @param reqVO
+     * @throws CommonServiceException
+     */
+    void saveFilm(FilmsAddReqVO reqVO) throws CommonServiceException;
 }

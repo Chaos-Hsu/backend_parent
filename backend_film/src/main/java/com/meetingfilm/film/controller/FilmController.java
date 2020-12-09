@@ -3,6 +3,7 @@ package com.meetingfilm.film.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.meetingfilm.film.controller.vo.ActorsListRespVO;
+import com.meetingfilm.film.controller.vo.FilmsAddReqVO;
 import com.meetingfilm.film.controller.vo.FilmsInfoRespVO;
 import com.meetingfilm.film.controller.vo.FilmsListRespVO;
 import com.meetingfilm.film.service.IFilmService;
@@ -10,10 +11,7 @@ import com.meetingfilm.utils.common.vo.BasePageVO;
 import com.meetingfilm.utils.common.vo.BaseResponseVo;
 import com.meetingfilm.utils.exception.CommonServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -59,6 +57,17 @@ public class FilmController {
             throw new CommonServiceException(404, "未找到影片");
         }
         return BaseResponseVo.success(filmInfo);
+    }
+
+    /**
+     * 影片详情
+     *
+     * @return
+     */
+    @PostMapping("/add")
+    public BaseResponseVo filmsAdd(@RequestBody FilmsAddReqVO reqVO) throws CommonServiceException {
+        filmService.saveFilm(reqVO);
+        return BaseResponseVo.success();
     }
 
 
