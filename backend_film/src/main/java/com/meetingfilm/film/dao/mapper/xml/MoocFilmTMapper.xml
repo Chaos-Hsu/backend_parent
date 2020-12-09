@@ -19,7 +19,7 @@
         <result column="film_status" property="filmStatus"/>
     </resultMap>
 
-    <select id="findFilms" resultType="com.meetingfilm.film.com.meetingfilm.cinema.controller.vo.FilmsListRespVO">
+    <select id="findFilms" resultType="com.meetingfilm.film.com.meetingfilm.cinema.com.meetingfilm.hall.controller.vo.FilmsListRespVO">
         SELECT f.film_status     AS film_status,
                f.film_name       AS filmName,
                f.film_score      AS filmScore,
@@ -35,7 +35,7 @@
     </select>
 
 
-    <select id="findById" resultType="com.meetingfilm.film.com.meetingfilm.cinema.controller.vo.FilmsInfoRespVO">
+    <select id="findById" resultType="com.meetingfilm.film.com.meetingfilm.cinema.com.meetingfilm.hall.controller.vo.FilmsInfoRespVO">
         SELECT f.UUID                      AS filmId,
                f.film_name                 AS filmName,
                fi.film_length              AS filmLength,

@@ -24,6 +24,7 @@
                 <module>backend_show</module>
                 <module>backend_film</module>
                 <module>backend_cinema</module>
+                <module>backend_hall</module>
             </modules>
         </profile>
     </profiles>
