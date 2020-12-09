@@ -13,4 +13,8 @@
         <result column="actors" property="actors" />
         <result column="img_address" property="imgAddress" />
     </resultMap>
+
+
+
+
 </mapper>

@@ -1,7 +1,7 @@
 package com.meetingfilm.hall.dao.mapper;
 
-import com.meetingfilm.hall.dao.entity.MoocHallFilmInfoT;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.meetingfilm.hall.dao.entity.MoocHallFilmInfoT;
 
 /**
  * <p>
@@ -12,5 +12,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  * @since 2020-12-09
  */
 public interface MoocHallFilmInfoTMapper extends BaseMapper<MoocHallFilmInfoT> {
+
 
 }
