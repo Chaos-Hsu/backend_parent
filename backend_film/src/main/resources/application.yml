@@ -14,6 +14,9 @@ spring:
   application:
     name: film-serivce
 
+server:
+  port: 8401
+
 eureka:
   client:
     service-url:
