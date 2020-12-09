@@ -59,6 +59,7 @@
         FROM mooc_film_t f,
              mooc_film_info_t fi
         WHERE f.UUID = fi.film_id
+          AND f.UUID = #{filmId}
     </select>
 
 
