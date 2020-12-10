@@ -11,5 +11,14 @@ spring:
   application:
     name: hello-consumer
 
+# 全局ribbon配置
+#ribbon:
+#  MaxAutoRetries: 3
+
+#指定客户端配置 (就近原则 那个近那个生效)
+#hello-provider:
+#  ribbon:
+#    MaxAutoRetries: 3
+
 logging:
   config: classpath:logback.xml
