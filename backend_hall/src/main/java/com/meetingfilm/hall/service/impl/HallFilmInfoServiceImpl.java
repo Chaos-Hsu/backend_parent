@@ -16,8 +16,6 @@ import com.meetingfilm.hall.service.IHallFilmInfoService;
 import com.meetingfilm.utils.exception.CommonServiceException;
 import com.meetingfilm.utils.util.ToolUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.client.ServiceInstance;
-import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
@@ -44,8 +42,8 @@ public class HallFilmInfoServiceImpl extends ServiceImpl<MoocHallFilmInfoTMapper
     @Autowired
     private RestTemplate restTemplate;
 
-    @Autowired
-    private LoadBalancerClient eurekaClient;
+    //@Autowired
+    //private LoadBalancerClient eurekaClient;
 
     @Override
     public IPage<HallsListRespVO> getHallsList(HallsListReqVO pageVO) throws CommonServiceException {
@@ -91,11 +89,13 @@ public class HallFilmInfoServiceImpl extends ServiceImpl<MoocHallFilmInfoTMapper
      */
     private MoocHallFilmInfoT getHallFilmInfo(String filmId) throws CommonServiceException {
         //调用影片服务
-        ServiceInstance choose = eurekaClient.choose("film-serivce");
-        String host = choose.getHost();
-        int port = choose.getPort();
+        //ServiceInstance choose = eurekaClient.choose("film-serivce");
+        //String host = choose.getHost();
+        //int port = choose.getPort();
         String uri = "/films/" + filmId;
-        String url = "http://" + host + ":" + port + uri;
+        //String url = "http://" + host + ":" + port + uri;
+        String url = "http://film-serivce" + uri;
+
         //调用生产者
         JSONObject result = restTemplate.getForObject(url, JSONObject.class);
         if (result.getIntValue("code") != 200) {
