@@ -1,6 +1,5 @@
 package com.meetingfilm.backend.common.utils;
 
-import com.meetingfilm.utils.common.vo.BaseResponseVo;
 import org.junit.Test;
 
 /**
