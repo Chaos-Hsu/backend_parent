@@ -18,20 +18,21 @@ public class ConsumerServiceImpl implements IConsumerService {
     @Autowired
     private RestTemplate restTemplate;
 
-    @Autowired
-    private LoadBalancerClient eurekaClient;
+    //@Autowired
+    //private LoadBalancerClient eurekaClient;
 
     @Override
     public String test(String msg) {
 
 
-        ServiceInstance serviceInstance = eurekaClient.choose("hello-provider");
-        String hostName = serviceInstance.getHost();
-        int port = serviceInstance.getPort();
+        //ServiceInstance serviceInstance = eurekaClient.choose("hello-provider");
+        //String hostName = serviceInstance.getHost();
+        //int port = serviceInstance.getPort();
         //String hostName = "127.0.0.1";
         //String port = "8201";
         String uri = "/provider/test?msg=" + msg;
-        String url = "http://" + hostName + ":" + port + uri;
+        //String url = "http://" + hostName + ":" + port + uri;
+        String url = "http://hello-provider" + uri;
         //调用生产者
         String result = restTemplate.getForObject(url, String.class);
         return result;
