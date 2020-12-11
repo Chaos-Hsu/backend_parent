@@ -5,7 +5,7 @@ import com.netflix.hystrix.HystrixCommandGroupKey;
 import lombok.Data;
 
 /**
- * 描述 :
+ * 描述 : 异步线程调用
  * 作者 : 徐起超
  * 时间 : 2020/12/10 4:38 下午
  */
@@ -21,6 +21,7 @@ public class CommandDemo extends HystrixCommand {
 
     /**
      * 业务逻辑
+     *
      * @return
      * @throws Exception
      */
