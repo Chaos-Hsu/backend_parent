@@ -25,6 +25,9 @@ public class CommandDemo extends HystrixCommand {
                                         .withExecutionIsolationSemaphoreMaxConcurrentRequests(2)//最大信号量
                                         .withFallbackIsolationSemaphoreMaxConcurrentRequests(5)
                                 //.withExecutionIsolationStrategy(HystrixCommandProperties.ExecutionIsolationStrategy.THREAD)//线程(新开线程)
+                                .withCircuitBreakerRequestVolumeThreshold(2)//单位时间内两个请求
+                                .withCircuitBreakerErrorThresholdPercentage(50)//失败率百分之50开启熔断
+                                //.withCircuitBreakerForceOpen(true)//强制开启熔断
                         )
                         .andThreadPoolKey(HystrixThreadPoolKey.Factory.asKey("MY_THREAD_POOL"))
                 //线程隔离
@@ -48,7 +51,13 @@ public class CommandDemo extends HystrixCommand {
     @Override
     protected String run() throws Exception {
         String result = "CommandDemo name:" + this.name;
-        Thread.sleep(800);
+        //Thread.sleep(800);
+
+        //手动创建异常
+        if (this.name.startsWith("xqc")) {
+            int i = 1 / 0;
+        }
+
         System.err.println(result + ";thread=" + Thread.currentThread().getName());
         return result;
     }

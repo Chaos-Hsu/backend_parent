@@ -204,6 +204,40 @@ public class CommandTest {
 
         Thread.sleep(5000L);
     }
+
+
+    /**
+     * 熔断器
+     */
+    @Test
+    public void CBTest()throws Exception {
+
+        //成功
+        CommandDemo cs = new CommandDemo("cs");
+        System.out.println(cs.execute());
+
+        //失败
+        CommandDemo xqc = new CommandDemo("xqc");
+        System.out.println(xqc.execute());
+
+        //成功
+        Thread.sleep(1000l);
+        CommandDemo cs2 = new CommandDemo("cs");
+        System.out.println(cs2.execute());
+
+
+        //半熔断
+        Thread.sleep(5000l);//5秒后开启半熔断状态去尝试向业务访问
+
+        //如果业务失败失败 继续开启熔断状态
+        //CommandDemo xqc2 = new CommandDemo("xqc2");
+        //System.out.println(xqc2.execute());
+
+        //如果业务成功 熔断器关闭
+        CommandDemo cs3 = new CommandDemo("cs");
+        System.out.println(cs3.execute());
+
+    }
 }
 
 class MyThread extends Thread {
