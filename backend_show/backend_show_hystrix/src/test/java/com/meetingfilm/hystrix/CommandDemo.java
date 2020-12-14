@@ -1,7 +1,6 @@
 package com.meetingfilm.hystrix;
 
 import com.netflix.hystrix.*;
-import com.netflix.hystrix.strategy.properties.HystrixPropertiesFactory;
 import lombok.Data;
 
 /**
@@ -24,17 +23,17 @@ public class CommandDemo extends HystrixCommand {
                                         .withRequestCacheEnabled(false)//关闭请求缓存
                                         .withExecutionIsolationStrategy(HystrixCommandProperties.ExecutionIsolationStrategy.SEMAPHORE)//信号量(不重开线程)
                                         .withExecutionIsolationSemaphoreMaxConcurrentRequests(2)//最大信号量
-                                        .withFallbackIsolationSemaphoreMaxConcurrentRequests(2)
-                                        //.withExecutionIsolationStrategy(HystrixCommandProperties.ExecutionIsolationStrategy.THREAD)//线程(新开线程)
+                                        .withFallbackIsolationSemaphoreMaxConcurrentRequests(5)
+                                //.withExecutionIsolationStrategy(HystrixCommandProperties.ExecutionIsolationStrategy.THREAD)//线程(新开线程)
                         )
                         .andThreadPoolKey(HystrixThreadPoolKey.Factory.asKey("MY_THREAD_POOL"))
-                        //线程隔离
-                        //.andThreadPoolPropertiesDefaults(HystrixThreadPoolProperties.defaultSetter()
-                        //    .withCoreSize(2)//核心线程
-                        //    .withMaximumSize(3)//最大线程数量
-                        //    .withAllowMaximumSizeToDivergeFromCoreSize(true)//开启最大线程
-                        //    .withMaxQueueSize(2)//等待队列数
-                        //)
+                //线程隔离
+                //.andThreadPoolPropertiesDefaults(HystrixThreadPoolProperties.defaultSetter()
+                //    .withCoreSize(2)//核心线程
+                //    .withMaximumSize(3)//最大线程数量
+                //    .withAllowMaximumSizeToDivergeFromCoreSize(true)//开启最大线程
+                //    .withMaxQueueSize(2)//等待队列数
+                //)
 
         );
         this.name = name;
@@ -54,9 +53,26 @@ public class CommandDemo extends HystrixCommand {
         return result;
     }
 
-
+    /**
+     * 请求缓存
+     *
+     * @return
+     */
     @Override
     protected String getCacheKey() {
         return this.name;
+    }
+
+
+    /**
+     * 降级处理
+     *
+     * @return
+     */
+    @Override
+    protected String getFallback() {
+        String result = "Fallback name:" + this.name;
+        System.err.println(result + ";thread=" + Thread.currentThread().getName());
+        return result;
     }
 }

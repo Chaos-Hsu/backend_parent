@@ -1,11 +1,8 @@
 package com.meetingfilm.hystrix;
 
-import com.netflix.hystrix.HystrixCollapser;
-import com.netflix.hystrix.HystrixCollapserKey;
-import com.netflix.hystrix.HystrixCommand;
-import com.netflix.hystrix.HystrixCommandGroupKey;
+import com.netflix.hystrix.*;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
@@ -21,7 +18,12 @@ public class CommandCollasper extends HystrixCollapser<List<String>, String, Int
 
 
     public CommandCollasper(Integer id) {
-        super(Setter.withCollapserKey(HystrixCollapserKey.Factory.asKey("COMMAND_COLLASPER")));
+        super(Setter
+                .withCollapserKey(HystrixCollapserKey.Factory.asKey("COMMAND_COLLASPER"))
+                .andCollapserPropertiesDefaults(
+                        HystrixCollapserProperties.defaultSetter().withTimerDelayInMilliseconds(2000)//超时时间
+                )
+        );
         this.id = id;
     }
 
@@ -32,7 +34,7 @@ public class CommandCollasper extends HystrixCollapser<List<String>, String, Int
      */
     @Override
     public Integer getRequestArgument() {
-        return null;
+        return this.id;
     }
 
     /**
@@ -43,7 +45,7 @@ public class CommandCollasper extends HystrixCollapser<List<String>, String, Int
      */
     @Override
     protected HystrixCommand<List<String>> createCommand(Collection<CollapsedRequest<String, Integer>> collection) {
-        return null;
+        return new BacthCommand(collection);
     }
 
     /**
@@ -55,6 +57,18 @@ public class CommandCollasper extends HystrixCollapser<List<String>, String, Int
     @Override
     protected void mapResponseToRequests(List<String> strings, Collection<CollapsedRequest<String, Integer>> collection) {
 
+        int counts = 0;
+
+        Iterator<HystrixCollapser.CollapsedRequest<String, Integer>> iterator =
+                collection.iterator();
+
+        while (iterator.hasNext()) {
+            HystrixCollapser.CollapsedRequest<String, Integer> next = iterator.next();
+
+            String result = strings.get(counts++);
+            next.setResponse(result);
+        }
+
     }
 }
 
@@ -64,7 +78,9 @@ class BacthCommand extends HystrixCommand<List<String>> {
     private Collection<HystrixCollapser.CollapsedRequest<String, Integer>> collection;
 
     public BacthCommand(Collection<HystrixCollapser.CollapsedRequest<String, Integer>> collection) {
-        super(Setter.withGroupKey(HystrixCommandGroupKey.Factory.asKey("BACTH_COMMAND")));
+        super(Setter
+                .withGroupKey(HystrixCommandGroupKey.Factory.asKey("BACTH_COMMAND"))
+        );
         this.collection = collection;
     }
 
@@ -72,23 +88,16 @@ class BacthCommand extends HystrixCommand<List<String>> {
     protected List<String> run() throws Exception {
         System.out.println("currentThread=" + Thread.currentThread().getName());
         //处理结果
-        List<String> result = Arrays.asList();
+        List<String> result = new ArrayList<>();
 
         Iterator<HystrixCollapser.CollapsedRequest<String, Integer>> iterator =
                 collection.iterator();
 
         while (iterator.hasNext()) {
-
-
             HystrixCollapser.CollapsedRequest<String, Integer> next = iterator.next();
-
             Integer argument = next.getArgument();
-
-
+            result.add("req" + argument.toString());
         }
-
-
-
         return result;
     }
 }
