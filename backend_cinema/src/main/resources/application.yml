@@ -25,3 +25,9 @@ eureka:
 logging:
   config: classpath:logback.xml
 
+#端口过滤
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
