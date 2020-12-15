@@ -20,5 +20,11 @@ spring:
 #  ribbon:
 #    MaxAutoRetries: 3
 
+#集成hystrix
+feign:
+  hystrix:
+    enabled: true
+
 logging:
   config: classpath:logback.xml
+

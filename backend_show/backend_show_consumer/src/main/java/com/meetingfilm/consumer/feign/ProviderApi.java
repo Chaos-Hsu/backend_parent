@@ -1,6 +1,8 @@
 package com.meetingfilm.consumer.feign;
 
 import com.meetingfilm.consumer.dto.UserDto;
+import com.meetingfilm.consumer.fallback.factory.ProviderFallBackFactory;
+import com.meetingfilm.consumer.fallback.impl.ProviderFallBackImpl;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,7 +12,9 @@ import org.springframework.web.bind.annotation.*;
  * 时间 : 2020/12/14 5:16 下午
  */
 //默认 springmvc 语法
-@FeignClient(name = "hello-provider", path = "provider")
+@FeignClient(name = "hello-provider", path = "provider",
+        //fallback = ProviderFallBackImpl.class
+        fallbackFactory = ProviderFallBackFactory.class)
 //@FeignClient(name = "ProviderApi", path = "test", url = "http://127.0.0.1:8202/provider")
 //feign语法
 //@FeignClient(name = "ProviderApi", path = "test", url = "http://127.0.0.1:8202/provider", configuration = FeignCustomConf.class)
