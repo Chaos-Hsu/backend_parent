@@ -8,8 +8,8 @@ eureka:
 
 zuul:
   routes: #路由规则
-    film-serivce: #application name 服务名称
-      path: /film-api/** #匹配规则
+    film-serivce: #application name 服务名称 service-id
+      path: /film-api/** #匹配规则 ? ->单个字符 * ->多个字符 ** ->多个字符并且多及目录
 
 
 
