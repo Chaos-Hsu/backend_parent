@@ -22,6 +22,11 @@ eureka:
     service-url:
       defaultZone: http://localhost:8761/eureka/
 
+#集成hystrix
+feign:
+  hystrix:
+    enabled: true
+
 logging:
   config: classpath:logback.xml
 

@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.meetingfilm.apis.films.vo.FilmsInfoRespVO;
+import com.meetingfilm.hall.apis.FilmsApi;
 import com.meetingfilm.hall.controller.vo.HallsAddReqVO;
 import com.meetingfilm.hall.controller.vo.HallsListReqVO;
 import com.meetingfilm.hall.controller.vo.HallsListRespVO;
@@ -13,6 +15,7 @@ import com.meetingfilm.hall.dao.entity.MoocHallFilmInfoT;
 import com.meetingfilm.hall.dao.mapper.MoocFieldTMapper;
 import com.meetingfilm.hall.dao.mapper.MoocHallFilmInfoTMapper;
 import com.meetingfilm.hall.service.IHallFilmInfoService;
+import com.meetingfilm.utils.common.vo.BaseResponseVo;
 import com.meetingfilm.utils.exception.CommonServiceException;
 import com.meetingfilm.utils.util.ToolUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,6 +47,10 @@ public class HallFilmInfoServiceImpl extends ServiceImpl<MoocHallFilmInfoTMapper
 
     //@Autowired
     //private LoadBalancerClient eurekaClient;
+
+    @Autowired
+    private FilmsApi filmsApi;
+
 
     @Override
     public IPage<HallsListRespVO> getHallsList(HallsListReqVO pageVO) throws CommonServiceException {
@@ -92,26 +99,43 @@ public class HallFilmInfoServiceImpl extends ServiceImpl<MoocHallFilmInfoTMapper
         //ServiceInstance choose = eurekaClient.choose("film-serivce");
         //String host = choose.getHost();
         //int port = choose.getPort();
-        String uri = "/films/" + filmId;
+        //String uri = "/films/" + filmId;
         //String url = "http://" + host + ":" + port + uri;
-        String url = "http://film-serivce" + uri;
+        //String url = "http://film-serivce" + uri;
 
         //调用生产者
-        JSONObject result = restTemplate.getForObject(url, JSONObject.class);
-        if (result.getIntValue("code") != 200) {
+        //JSONObject result = restTemplate.getForObject(url, JSONObject.class);
+        //if (result.getIntValue("code") != 200) {
+        //    throw new CommonServiceException(500, "数据异常");
+        //}
+        //JSONObject data = result.getJSONObject("data");
+        //if (data == null) {
+        //    throw new CommonServiceException(404, "未找到影片");
+        //}
+        //MoocHallFilmInfoT hallFilmInfo = new MoocHallFilmInfoT();
+        //hallFilmInfo.setFilmId(data.getIntValue("filmId"));
+        //hallFilmInfo.setFilmName(data.getString("filmName"));
+        //hallFilmInfo.setFilmLength(data.getString("filmLength"));
+        //hallFilmInfo.setFilmCats(data.getString("filmCats"));
+        //hallFilmInfo.setActors(data.getString("actors"));
+        //hallFilmInfo.setImgAddress(data.getString("imgAddress"));
+
+        //集成feign写法
+        BaseResponseVo<FilmsInfoRespVO> responseVo = filmsApi.filmsInfo(filmId);
+        if (responseVo.getCode() != 200) {
             throw new CommonServiceException(500, "数据异常");
         }
-        JSONObject data = result.getJSONObject("data");
+        FilmsInfoRespVO data = responseVo.getData();
         if (data == null) {
             throw new CommonServiceException(404, "未找到影片");
         }
         MoocHallFilmInfoT hallFilmInfo = new MoocHallFilmInfoT();
-        hallFilmInfo.setFilmId(data.getIntValue("filmId"));
-        hallFilmInfo.setFilmName(data.getString("filmName"));
-        hallFilmInfo.setFilmLength(data.getString("filmLength"));
-        hallFilmInfo.setFilmCats(data.getString("filmCats"));
-        hallFilmInfo.setActors(data.getString("actors"));
-        hallFilmInfo.setImgAddress(data.getString("imgAddress"));
+        hallFilmInfo.setFilmId(ToolUtils.str2Int(data.getFilmId()));
+        hallFilmInfo.setFilmName(data.getFilmName());
+        hallFilmInfo.setFilmLength(data.getFilmLength());
+        hallFilmInfo.setFilmCats(data.getFilmCats());
+        hallFilmInfo.setActors(data.getActors());
+        hallFilmInfo.setImgAddress(data.getImgAddress());
         return hallFilmInfo;
     }
 

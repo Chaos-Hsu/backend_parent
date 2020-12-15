@@ -35,7 +35,7 @@
     </select>
 
 
-    <select id="findById" resultType="com.meetingfilm.film.controller.vo.FilmsInfoRespVO">
+    <select id="findById" resultType="com.meetingfilm.apis.films.vo.FilmsInfoRespVO">
         SELECT f.UUID                      AS filmId,
                f.film_name                 AS filmName,
                fi.film_length              AS filmLength,

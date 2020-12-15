@@ -2,9 +2,9 @@ package com.meetingfilm.film.service;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.meetingfilm.apis.films.vo.FilmsInfoRespVO;
 import com.meetingfilm.film.controller.vo.ActorsListRespVO;
 import com.meetingfilm.film.controller.vo.FilmsAddReqVO;
-import com.meetingfilm.film.controller.vo.FilmsInfoRespVO;
 import com.meetingfilm.film.controller.vo.FilmsListRespVO;
 import com.meetingfilm.film.dao.entity.MoocFilmT;
 import com.meetingfilm.utils.common.vo.BasePageVO;

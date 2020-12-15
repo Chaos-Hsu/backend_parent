@@ -23,6 +23,8 @@
                 <module>backend_user</module>
                 <module>backend_eureka_server</module>
                 <module>backend_api</module>
+                <module>backend_apigw_zuul</module>
+
 
                 <module>backend_show</module>
                 <module>backend_film</module>
