@@ -2,8 +2,7 @@ package com.meetingfilm.provider.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 描述 :
@@ -20,9 +19,15 @@ public class ProviderController {
 
 
     @RequestMapping(value = "/test")
-    public String test(String msg){
+    public String test(String msg) {
         log.error("port:{},msg:{}", port, msg);
         return "port:" + port + ",msg:" + msg;
+    }
+
+    @RequestMapping(value = "/test/post/{id}", method = RequestMethod.POST)
+    public String testPost(@RequestBody String json, @PathVariable("id") String id, @RequestHeader String headName) {
+        log.error("port:{},josn:{},id:{},head:{}", port, json, id, headName);
+        return "sucess";
     }
 
 }
