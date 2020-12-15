@@ -36,7 +36,7 @@ public class FilmController {
      *
      * @return
      */
-    @PostMapping
+    @RequestMapping
     public BaseResponseVo filmsList(BasePageVO pageVO) throws CommonServiceException {
         //校验
         pageVO.checkParam();
@@ -64,7 +64,7 @@ public class FilmController {
      *
      * @return
      */
-    @PostMapping("/add")
+    @RequestMapping("/add")
     public BaseResponseVo filmsAdd(@RequestBody FilmsAddReqVO reqVO) throws CommonServiceException {
         filmService.saveFilm(reqVO);
         return BaseResponseVo.success();
@@ -76,7 +76,7 @@ public class FilmController {
      *
      * @return
      */
-    @PostMapping("/actors")
+    @RequestMapping("/actors")
     public BaseResponseVo actorsList(BasePageVO pageVO) throws CommonServiceException {
         //校验
         pageVO.checkParam();
