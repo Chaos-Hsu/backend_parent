@@ -9,7 +9,14 @@ eureka:
     register-with-eureka: false
     fetch-registry: false
   service-url:
-    defaultZone: http://localhost:8761/eureka/
+    defaultZone: http://xqc:xqc123@localhost:8761/eureka/
+
+spring:
+  security:
+    user:
+      name: xqc
+      password: xqc123
+      roles: SUPERUSER #超管
 
 logging:
   config: classpath:logback.xml
