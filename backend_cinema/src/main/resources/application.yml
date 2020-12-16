@@ -12,7 +12,7 @@ spring:
     password: csxqc1314
     filters: log4j,wall,mergeStat
   application:
-    name: cinema-serivce
+    name: cinema-service
 
 server:
   port: 8501

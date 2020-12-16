@@ -96,12 +96,12 @@ public class HallFilmInfoServiceImpl extends ServiceImpl<MoocHallFilmInfoTMapper
      */
     private MoocHallFilmInfoT getHallFilmInfo(String filmId) throws CommonServiceException {
         //调用影片服务
-        //ServiceInstance choose = eurekaClient.choose("film-serivce");
+        //ServiceInstance choose = eurekaClient.choose("film-service");
         //String host = choose.getHost();
         //int port = choose.getPort();
         //String uri = "/films/" + filmId;
         //String url = "http://" + host + ":" + port + uri;
-        //String url = "http://film-serivce" + uri;
+        //String url = "http://film-service" + uri;
 
         //调用生产者
         //JSONObject result = restTemplate.getForObject(url, JSONObject.class);

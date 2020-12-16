@@ -12,7 +12,7 @@ spring:
     password: csxqc1314
     filters: log4j,wall,mergeStat
   application:
-    name: user-serivce
+    name: user-service
 
 eureka:
   client:

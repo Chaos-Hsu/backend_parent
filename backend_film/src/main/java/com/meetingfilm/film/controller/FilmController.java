@@ -10,9 +10,12 @@ import com.meetingfilm.film.service.IFilmService;
 import com.meetingfilm.utils.common.vo.BasePageVO;
 import com.meetingfilm.utils.common.vo.BaseResponseVo;
 import com.meetingfilm.utils.exception.CommonServiceException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -26,6 +29,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/films")
+@Slf4j
 public class FilmController {
 
     @Autowired
@@ -51,7 +55,13 @@ public class FilmController {
      * @return
      */
     @RequestMapping("/{filmId}")
-    public BaseResponseVo filmsInfo(@PathVariable("filmId") String filmId) throws CommonServiceException {
+    public BaseResponseVo filmsInfo(@PathVariable("filmId") String filmId, HttpServletRequest request) throws CommonServiceException {
+        //请求头内容
+        Enumeration<String> headerNames = request.getHeaderNames();
+        while (headerNames.hasMoreElements()) {
+            String head = headerNames.nextElement();
+            log.info("films headName:{},value:{}", head, request.getHeader(head));
+        }
         FilmsInfoRespVO filmInfo = filmService.getFilmInfo(filmId);
         if (filmInfo == null) {
             throw new CommonServiceException(404, "未找到影片");

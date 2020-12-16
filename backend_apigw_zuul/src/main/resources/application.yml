@@ -7,11 +7,44 @@ eureka:
       defaultZone: http://localhost:8761/eureka/
 
 zuul:
-  routes: #路由规则
-    film-serivce: #application name 服务名称 service-id
-      path: /film-api/** #匹配规则 ? ->单个字符 * ->多个字符 ** ->多个字符并且多及目录
+  prefix: "/meetingfilm/"
+  routes:
+    meetingfilm-film:
+      serviceId: film-service
+      path: /filmapi/**
+      retryable: true #是否允许重试 饿汉模式
+    meetingfilm-user:
+      serviceId: user-service
+      path: /userapi/**
+      retryable: true #是否允许重试 饿汉模式
+    meetingfilm-hall:
+      serviceId: hall-service
+      path: /hallapi/**
+      retryable: true #是否允许重试 饿汉模式
+    meetingfilm-cinema:
+      serviceId: cinema-service
+      path: /cinemaapi/**
+      retryable: true #是否允许重试 饿汉模式
 
 
+
+      #routes: #路由规则
+      #film-service: #application name 服务名称 service-id
+      #path: /film-api/** #匹配规则 ? ->单个字符 * ->多个字符 ** ->多个字符并且多及目录
+  #sensitive-headers: "xqc" #过滤头信息 只限制只一个其他都可以
+  #ignored-headers: "xqc" 除了这个其他都不可以
+
+
+
+hystrix:
+  command:
+    default:
+      execution:
+        timeout:
+          enabled: true
+        isolation:
+          thread:
+            timeoutInMilliseconds: 10000
 
 logging:
   config: classpath:logback.xml
