@@ -21,4 +21,9 @@ public class CustomFilter {
         return new JWTFilter();
     }
 
+    @Bean
+    public CorsFilter initCorsFitler() {
+        return new CorsFilter();
+    }
+
 }
