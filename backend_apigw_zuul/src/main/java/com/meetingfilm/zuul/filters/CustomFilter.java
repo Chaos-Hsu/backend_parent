@@ -16,4 +16,9 @@ public class CustomFilter {
         return new MyFilter();
     }
 
+    @Bean
+    public JWTFilter initJWTFitler() {
+        return new JWTFilter();
+    }
+
 }

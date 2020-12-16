@@ -17,7 +17,7 @@ import java.io.InputStream;
 /**
  * @description : 业务降级处理
  **/
-@Component
+//@Component
 public class MyFallback implements FallbackProvider {
 
     @Override

@@ -50,4 +50,15 @@ public class BaseResponseVo<T> {
     }
 
 
+    /**
+     * 未登录异常
+     *
+     * @return
+     */
+    public static BaseResponseVo noLogin() {
+        BaseResponseVo response = new BaseResponseVo();
+        response.setCode(401);
+        response.setMsg("请登录");
+        return response;
+    }
 }
