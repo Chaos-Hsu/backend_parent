@@ -20,6 +20,12 @@
 
     <dependencies>
 
+        <!-- srpingboot -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
         <!-- guava支持 -->
         <dependency>
             <groupId>com.google.guava</groupId>

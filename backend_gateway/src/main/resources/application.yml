@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: cloudgw-service
+  cloud:
+    gateway:
+      routes:
+        - id: xqc-predicate
+          uri: "http://www.jd.com"
+          predicates:
+            #- Path=/xqc/**
+          - XAfter=2018-11-01
+          filters:
+          - Custom=xqc,123
+server:
+  port: 8081
+
+
+logging:
+  config: classpath:logback.xml
+

@@ -24,7 +24,7 @@
                 <module>backend_eureka_server</module>
                 <module>backend_api</module>
                 <module>backend_apigw_zuul</module>
-
+                <module>backend_gateway</module>
 
                 <module>backend_show</module>
                 <module>backend_film</module>
@@ -52,11 +52,7 @@
 
     <dependencies>
 
-        <!-- srpingboot -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
+
 
         <!-- springcloud -->
         <dependency>
